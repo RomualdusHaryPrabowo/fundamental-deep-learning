@@ -103,4 +103,7 @@ streamlit run climate-app.py
 
 ## 👨‍💻 Author
 
-Hypo / Romualdus Hary Prabowo
+**Romualdus Hary Prabowo**
+
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/hyporom._)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hypo/)
