@@ -23,6 +23,18 @@ dates = df['date'].values
 # Mengambil nilai dari kolom 'meantemp' sebagai array NumPy untuk sumbu Y (target prediksi)
 temp = df['meantemp'].values
 
+# Membagi data menjadi dua bagian: 80% untuk pelatihan (training) dan 20% untuk pengujian (testing)
+# Menentukan titik potong
+split_time = int(len(temp) * 0.8)
+
+# Membagi Data (Splitting)
+x_train = temp[:split_time]     # Mengambil 80% data pertama
+time_train = dates[:split_time] 
+
+x_test = temp[split_time:]      # Mengambil 20% data terakhir
+time_test = dates[split_time:]
+
+
 # 4. VISUALISASI DATA
 # Membuat kanvas grafik dengan ukuran panjang 15 dan lebar 5
 plt.figure(figsize=(15,5))
@@ -66,7 +78,8 @@ def windowed_dataset(series, window_size, batch_size, shuffle_buffer):
 # 6. MEMBANGUN ARSITEKTUR MODEL
 # Menerapkan fungsi windowed_dataset ke data suhu (temp)
 # Menggunakan 60 data masa lalu untuk memprediksi 1 data di masa depan
-train_set = windowed_dataset(temp, window_size=60, batch_size=100, shuffle_buffer=1000)
+train_set = windowed_dataset(temp, window_size=60, batch_size=100, shuffle_buffer=1000) # untuk data latih
+test_set = windowed_dataset(temp, window_size=60, batch_size=100, shuffle_buffer=1)  # untuk data uji 
 
 # Membangun model jaringan saraf tiruan (Neural Network) secara berurutan (Sequential)
 model = tf.keras.models.Sequential([
@@ -105,8 +118,10 @@ model.compile(loss=tf.keras.losses.Huber(),
 history = model.fit(train_set, epochs=100)
 
 # 9. MELAKUKAN PREDIKSI
-# Menggunakan model yang telah dilatih untuk memprediksi ulang data pada train_set
-forecast = history.model.predict(train_set)
+# Menggunakan model yang telah dilatih untuk memprediksi ulang data pada test_set
+forecast = history.model.predict(test_set)
 
 # Menampilkan hasil prediksi
 print(forecast)
+
+model.save('model.h5') # Menyimpan model yang sudah dilatih ke dalam file 'model.h5' untuk digunakan nanti tanpa perlu melatih ulang
