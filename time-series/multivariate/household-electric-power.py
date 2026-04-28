@@ -17,7 +17,7 @@ def normalize_series(data, min_val, max_val):
 data = df.values
 data = normalize_series(data, data.min(axis=0), data.max(axis=0))
 
-N_FEATURES = len(df.columns)
+N_FEATURES = len(df.columns) # Jumlah fitur (kolom) dalam dataset, digunakan untuk menentukan input dan output model.
 
 # 3. Split Data (50% train, 50% valid)
 SPLIT_TIME = int(len(data) * 0.5)
