@@ -1,7 +1,7 @@
-import torch
-import torchvision.transforms as transforms
-from PIL import Image
-import matplotlib.pyplot as plt
+import torch # Mengimpor library PyTorch untuk keperluan tensor dan operasi terkait dengan deep learning
+import torchvision.transforms as transforms # Mengimpor modul transforms dari torchvision untuk melakukan transformasi pada citra
+from PIL import Image # Mengimpor modul Image dari PIL (Python Imaging Library) untuk memproses citra
+import matplotlib.pyplot as plt # Mengimpor library Matplotlib untuk membuat visualisasi data (grafik)
 
 # Membaca citra
 image_path = "../data/singa.jpg"
